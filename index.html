@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b35">
+  <title>Atlas de Minas Gerais | WebGIS</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Atlas MG início"><span class="brand-mark">MG</span><span><b>ATLAS</b><small>MINAS GERAIS · WEBGIS</small></span></a>
+    <div class="top-actions"><span class="live-dot"></span><span class="status-label">VISUALIZADOR GEOGRÁFICO</span><button id="fullscreen" class="icon-button" title="Tela cheia" aria-label="Tela cheia">⛶</button></div>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="intro"><p class="eyebrow">EXPLORAR TERRITÓRIO</p><h1>Minas Gerais</h1><p class="subtle">Camadas geográficas do estado em um mapa interativo.</p></div>
+      <section class="panel-section"><div class="section-heading"><h2>Camadas</h2><button id="resetLayers" class="text-button">limpar</button></div>
+        <label class="layer-row"><input type="checkbox" id="toggle-limite" checked><span class="swatch boundary"></span><span class="layer-copy"><b>Limite estadual</b><small>Divisa de Minas Gerais</small></span><button class="info" type="button" title="Limite de Minas Gerais">i</button></label>
+        <label class="layer-row"><input type="checkbox" id="toggle-hidro"><span class="swatch water"></span><span class="layer-copy"><b>Hidrografia</b><small>Rede hidrográfica estadual</small></span><button class="info" type="button" title="Hidrografia de Minas Gerais">i</button></label>
+        <label class="layer-row"><input type="checkbox" id="toggle-roads"><span class="swatch road"></span><span class="layer-copy"><b>Rodovias</b><small>Sistema rodoviário estadual</small></span><button class="info" type="button" title="Rodovias de Minas Gerais">i</button></label>
+      </section>
+      <section class="panel-section"><div class="section-heading"><h2>Mapa de fundo</h2></div>
+        <label class="base-row"><input type="radio" name="basemap" value="street" checked><span>Ruas</span><small>OpenStreetMap</small></label>
+        <label class="base-row"><input type="radio" name="basemap" value="satellite"><span>Satélite</span><small>Esri World Imagery</small></label>
+      </section>
+      <section class="panel-section tools-section"><div class="section-heading"><h2>Ferramentas</h2></div>
+        <button class="tool-button" id="home"><span>⌂</span> Visão geral do estado</button>
+        <button class="tool-button" id="locate"><span>◎</span> Minha localização</button>
+        <div class="opacity-control"><div><label for="opacity">Opacidade das camadas</label><output id="opacityValue">100%</output></div><input id="opacity" type="range" min="20" max="100" value="100"></div>
+      </section>
+      <div class="sidebar-foot"><span class="source-dot"></span> Dados locais · GeoJSON <span class="foot-right">EPSG:4326</span></div>
+    </aside>
+    <section class="map-shell" aria-label="Mapa interativo de Minas Gerais">
+      <div id="map"></div>
+      <div class="map-title"><span class="map-kicker">BRASIL · SUDESTE</span><b>MINAS GERAIS</b></div>
+      <div class="map-hint" id="mapHint"><span class="hint-icon">↗</span><span>Ative uma camada para visualizar os dados.<small>Os arquivos são carregados sob demanda.</small></span><button id="dismissHint" aria-label="Fechar aviso">×</button></div>
+      <div class="coords" id="coords">Lat — · Lon —</div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
